@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <p></p>
+    <div class="columns">
+        <div class="column col-12">
+            <div class="text-center">
+                <h4><u>Lista pracowników</u></h4>
+                <a href="{{ url_for('add_employee') }}" class="btn btn-primary">Dodaj pracownika</a>
+            </div>
+        </div>
+        <div class="column col-3"></div>
+        <div class="column col-6">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID pracownika</th>
+                <th>Imię i nazwisko</th>
+                <th>email</th>
+                <th>Stanowisko manadżerskie</th>
+                <th>Departament</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr class="active">
+                <td>{{ employee.empID }}</td>
+                <td>{{ employee.empName }}</td>
+                <td>{{ employee.empEmail }}</td>
+                <td>{% if employee.empIsManager %}
+                        TAK
+                    {% else %}
+                        NIE
+                    {% endif %}
+                </td>
+                <td>{{ employee.depID }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        </div>
+        <div class="column col-3"></div>
+    </div>
+</div>
+
+{% endblock %}

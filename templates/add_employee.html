@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <p></p>
+    <div class="columns">
+        <div class="column col-12">
+            <div class="text-center">
+                <h4><u>Wprowadź pracownika</u></h4>
+            </div>
+        </div>
+        <div class="column col-3"></div>
+        <div class="column col-6">
+            <form class="form-horizontal" method="post">
+                <div class="form-group">
+                    <div class="col-2">
+                        <label class="form-label" for="empName">Nazwa</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="empName" name="empName" placeholder="Imię i nazwisko pracownika">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="empEmail">email</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="email" id="empEmail" name="empEmail" placeholder="nazwa@example.com">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="depID">Departament</label>
+                    </div>
+                    <div class="col-10">
+                          <select class="form-select" id="depID" name="depID">
+                                <option>Wybierz departament</option>
+                                {% for departament in departaments %}
+                                    <option>{{ departament.depName }}</option>
+                                {% endfor %}
+                          </select>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="empIsManager">Manager</label>
+                    </div>
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label class="form-checkbox form-inline">
+                                <input type="checkbox" id="empIsManager" name="empIsManager"><i class="form-icon"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="col-6"></div>
+                    <div class="col-2">
+                        <button class="btn btn-primary" type="submit">Zapisz</button>
+                    </div>
+                    <div class="col-6"></div>
+                    <p></p>
+                </div>
+            </form>
+        </div>
+        <div class="column col-3"></div>
+    </div>
+</div>
+
+{% endblock %}

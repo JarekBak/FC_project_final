@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if subtitle %}{{ subtitle }} - {% endif %}Baza Korespondencji</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap">
+    <style>
+        body {
+            background-color: #e0e0e0;
+            font-family: 'Helvetica';
+        }
+        .navbar-center h1 {
+            font-family: 'Helvetica', cursive;
+            font-size: 2.0em;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+        /* Optional: General styles for toast messages */
+        .toast {
+            margin-top: 1rem;
+        }
+        table {
+            class="table table-hover table-striped";
+        }
+        th, td {
+            text-align: center; /* Wyśrodkowanie tekstu */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="navbar">
+            <section class="navbar-section">
+                <a href="{{ url_for('index') }}" class="navbar-brand mr-2"><b>Strona główna</b></a>
+                <a href="{{ url_for('add_departament') }}" class="btn btn-link">Departamenty</a>
+                <a href="{{ url_for('employee_list') }}" class="btn btn-link">Pracownicy</a>
+                <a href="" class="btn btn-link">Administracja</a>
+            </section>
+                    <div>
+                        <section class="navbar-center">
+                            <h1>Baza Korespondecji</h1>
+                        </section>
+                    </div>
+
+          <section class="navbar-section">
+              <a href="" class="btn btn-link">Historia operacji</a>
+          </section>
+        </header>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="text-center">
+            <p>&copy; 2024 Korespondencja</p>
+        </footer>
+    </div>
+</body>
+</html>

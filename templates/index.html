@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <p></p>
+    <div class="columns">
+        <div class="column col-12">
+            <div class="text-center">
+                <h4><u>Zarejestruj korespondencję</u></h4>
+            </div>
+        </div>
+        <div class="column col-3"></div>
+        <div class="column col-6">
+            <form class="form-horizontal" method="post">
+                <div class="form-group">
+                    <div class="col-2">
+                        <label class="form-label" for="corSubject">Temat</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSubject" name="corSubject" placeholder="Temat pisma">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corContent">email</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corContent" name="corContent" placeholder="Dodatkowy opis pisma">
+                    </div>
+                     <div class="col-2">
+                        <label class="form-label" for="corDate">email</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="date" id="corDate" name="corDate" placeholder="Wprowadź datę">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corType">Departament</label>
+                    </div>
+                    <div class="col-10">
+                          <select class="form-select" id="corType" name="corType">
+                                <option>Rodzaj pisma</option>
+                                <option>PRZYCHODZĄCE</option>
+                                <option>WYCHODZĄCE</option>
+                          </select>
+                    </div>
+                     <div class="col-2">
+                        <label class="form-label" for="corSenderName">Nadawca</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSenderName" name="corSenderName" placeholder="Wpisz nazwę nadawcy">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corSenderAddress">Adres nadawcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSenderAddress" name="corSenderAddress" placeholder="Wpisz adres nadawcy">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corRecipientName">Nazwa odbiorcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corRecipientName" name="corRecipientName" placeholder="Wpisz nazwę odbiorcy">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corRecipientAddress">Adres odbiorcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corRecipientAddress" name="corRecipientAddress" placeholder="Wpisz adres odbiorcy">
+                    </div>
+
+                    <div class="col-2">
+                        <label class="form-label" for="depID">Departament</label>
+                    </div>
+                    <div class="col-10">
+                          <select class="form-select" id="depID" name="depID">
+                                <option>Wybierz departament</option>
+                                {% for departament in departaments %}
+                                    <option>{{ departament.depName }}</option>
+                                {% endfor %}
+                          </select>
+                    </div>
+                    <p></p>
+                    <div class="col-6"></div>
+                    <div class="col-2">
+                        <button class="btn btn-primary" type="submit">Zapisz</button>
+                    </div>
+                    <div class="col-6"></div>
+                    <p></p>
+                </div>
+
+            </form>
+        </div>
+        <div class="column col-3"></div>
+    </div>
+</div>
+{% endblock %}
