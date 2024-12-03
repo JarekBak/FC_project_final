@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container" align-items: center xmlns:align-items="http://www.w3.org/1999/xhtml"
+     xmlns:text-align="http://www.w3.org/1999/xhtml">
+    <div class="columns">
+        <div class="column col-4"></div>
+        <div class="column col-4">
+            <br>
+                <div class="bg-dark">
+                    <span class="text-light">
+                        <h4>Przydziel korespondencję</h4>
+                    </span>
+                </div>
+            </br>
+        </div>
+        <div class="column col-4"></div>
+    </div>
+    <div class="columns">
+        <div class="column col-4"></div>
+        <div class="column col-2">
+            <div class="column col-12">
+                <div class="text-center">
+                <!-- Wykorzystanie metody GET w celu wyfiltrowania pracowników z danego departamentu -->
+                    <form class="form-horizontal" method="GET" action="{{ url_for('cor_update_record', corID=record.corID) }}">
+                        <!-- Wybór departamentu -->
+                        <b><label for="depID">Nazwa Departamentu:</label></b>
+                        <select id="depID" name="depID" required>
+                            <option value="" disabled {% if not selected_depID %} selected {% endif %}>Wybierz Departament</option>
+                            {% for departament in departaments %}
+                                <option value="{{ departament.depID }}"
+                                    {% if departament.depID == selected_depID %} selected {% endif %}>
+                                    {{ departament.depName }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <p></p>
+                        <button class="btn btn-grey" type="submit" name="filter" value="1">Filtruj pracowników</button>
+                    </form>
+                </div>
+                    <br>
+                </div>
+            </div>
+        <div class="column col-2">
+            <div class="column col-4"></div>
+                <div class="column col-10">
+                    <div class="text-center">
+                        <!-- Wykorzystanie metody POST w celu zapisania nowego przydziału obsługiwanej korespondencji-->
+                        <form class="form-horizontal" method="POST" action="{{ url_for('cor_update_record', corID=record.corID) }}">
+                            <!-- Department selection (hidden) -->
+                            <input type="hidden" name="depID" value="{{ selected_depID }}">
+                            <!-- Wybór pracownika -->
+                            <b><label for="empID">Pracownik: </label></b>
+                            <select id="empID" name="empID" required>
+                                <option value="" disabled {% if not record.empID %} selected {% endif %}>Wybierz pracownika</option>
+                                {% for employee in employees %}
+                                    <option value="{{ employee.empID }}"
+                                            {% if employee.empID == record.empID %} selected {% endif %}>
+                                        {{ employee.empName }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <p></p>
+                            <!-- Użycie przycisku save w celu zapisania nowych danych do bazy -->
+                            <input type="hidden" name="save" value="1">
+                            <button class="btn btn-primary" type="submit">Zapisz nowe dane</button>
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            <div class="column col-4"></div>
+        </div>
+
+        <div class="column col-4"></div>
+    </div>
+    <div class = columns>
+        <div class="column col-12">
+            <div class="text-center">
+                <a href="{{ url_for('cor_records') }}"><b>Powrót do listy korespondencji</b></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

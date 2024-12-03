@@ -12,46 +12,52 @@
         <div class="column col-6">
             <form class="form-horizontal" method="post">
                 <div class="form-group">
+                    <!-- Pole na imię i nazwisko -->
                     <div class="col-2">
                         <label class="form-label" for="empName">Nazwa</label>
                     </div>
                     <div class="col-10">
                         <input class="form-input" type="text" id="empName" name="empName" placeholder="Imię i nazwisko pracownika">
                     </div>
+
+                    <!-- Pole na email -->
                     <div class="col-2">
-                        <label class="form-label" for="empEmail">email</label>
+                        <label class="form-label" for="empEmail">Email</label>
                     </div>
                     <div class="col-10">
                         <input class="form-input" type="email" id="empEmail" name="empEmail" placeholder="nazwa@example.com">
                     </div>
+
+                    <!-- Pole wyboru departamentu -->
                     <div class="col-2">
                         <label class="form-label" for="depID">Departament</label>
                     </div>
                     <div class="col-10">
-                          <select class="form-select" id="depID" name="depID">
-                                <option>Wybierz departament</option>
-                                {% for departament in departaments %}
-                                    <option>{{ departament.depName }}</option>
-                                {% endfor %}
-                          </select>
+                        <select class="form-select" id="depID" name="depID" required>
+                            <option value="" disabled selected>Wybierz departament</option>
+                            {% for departament in departaments %}
+                                <option value="{{ departament.depID }}">{{ departament.depName }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
+
+                    <!-- Pole wyboru czy manager -->
                     <div class="col-2">
                         <label class="form-label" for="empIsManager">Manager</label>
                     </div>
                     <div class="col-10">
-                        <div class="form-group">
-                            <label class="form-checkbox form-inline">
-                                <input type="checkbox" id="empIsManager" name="empIsManager"><i class="form-icon"></i>
-                            </label>
-                        </div>
+                        <label class="form-checkbox form-inline">
+                            <input type="checkbox" id="empIsManager" name="empIsManager">
+                            <i class="form-icon"></i>
+                        </label>
                     </div>
-                    <p></p>
+
+                    <!-- Przycisk zapisu -->
                     <div class="col-6"></div>
                     <div class="col-2">
                         <button class="btn btn-primary" type="submit">Zapisz</button>
                     </div>
                     <div class="col-6"></div>
-                    <p></p>
                 </div>
             </form>
         </div>

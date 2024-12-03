@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <p></p>
+    <div class="columns">
+        <div class="column col-12">
+            <div class="text-center">
+                <h4><u>Lista Korespondencji</u></h4>
+                <a href="{{ url_for('add_correspondence') }}" class="btn btn-primary">Dodaj</a>
+                <p></p>
+            </div>
+        </div>
+        <div class="column col-12">
+            <table class="table table-striped table-hover" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tytuł</th>
+                        <th>Opis</th>
+                        <th>Data rejestracji</th>
+                        <th>Rodzaj pisma</th>
+                        <th>Nadawca</th>
+                        <th>Adres nadawcy</th>
+                        <th>Odbiorca</th>
+                        <th>Adres odbiorcy</th>
+                        <th>Departament</th>
+                        <th>Pracownik realizujący</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record.corID }}</td>
+                        <td>{{ record.corSubject }}</td>
+                        <td>{{ record.corContent }}</td>
+                        <td>{{ record.corDate }}</td>
+                        <td>{{ record.corType }}</td>
+                        <td>{{ record.corSenderName }}</td>
+                        <td>{{ record.corSenderAddress }}</td>
+                        <td>{{ record.corRecipientName }}</td>
+                        <td>{{ record.corRecipientAddress }}</td>
+                        <td>{{ record.departament.depName if record.departament else 'Brak' }}</td>
+                        <td>{{ record.employee.empName if record.employee else 'Brak'  }}</td>
+                        <td>
+                            <a href="{{ url_for('cor_update_record', corID=record.corID) }}">Przydział</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

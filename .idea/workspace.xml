@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32f2c95c-5b76-4940-94eb-4cd9bad7a29e" name="Changes" comment="utworzenie projektu">
-      <change afterPath="$PROJECT_DIR$/instance/corespondetion.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/add_departament.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/add_employee.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/employees.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="32f2c95c-5b76-4940-94eb-4cd9bad7a29e" name="Changes" comment="wersja z działającym dodawaniem poszczególnych danych">
+      <change afterPath="$PROJECT_DIR$/templates/add_correspondence.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/cor_records.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/cor_update_record.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/corespondetion.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/corespondetion.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employees.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employees.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +45,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/jaroslaw.bakacz/FutureCollars/projekt/python_baza_korespondencji/templates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jaroslaw.bakacz/FutureCollars/projekt/python_baza_korespondencji/templates&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jaroslaw.bakacz\FutureCollars\projekt\python_baza_korespondencji\templates" />
@@ -82,11 +83,20 @@
       <option name="project" value="LOCAL" />
       <updated>1733037633817</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="wersja z działającym dodawaniem poszczególnych danych">
+      <option name="closed" value="true" />
+      <created>1733125399228</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733125399228</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="utworzenie projektu" />
-    <option name="LAST_COMMIT_MESSAGE" value="utworzenie projektu" />
+    <MESSAGE value="wersja z działającym dodawaniem poszczególnych danych" />
+    <option name="LAST_COMMIT_MESSAGE" value="wersja z działającym dodawaniem poszczególnych danych" />
   </component>
 </project>
