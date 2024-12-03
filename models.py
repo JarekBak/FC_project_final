@@ -2,10 +2,14 @@ import pandas as pd
 from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///correspondence.db'
 db = SQLAlchemy(app)
+
+migrate = Migrate(app, db)
+
 
 class Departament(db.Model):
     __tablename__ = 'departament'
@@ -37,6 +41,9 @@ class Correspondence(db.Model):
     depID = db.Column(db.Integer, db.ForeignKey("departament.depID"), nullable=True)
     empID = db.Column(db.Integer, db.ForeignKey("employee.empID"), nullable=True)
     attachments = db.relationship("Attachment", backref="correspondence", lazy=True)
+    corStatus = db.Column(db.String(50), nullable=True)
+    corDeadline = db.Column(db.Date, nullable=True)
+    corComplited = db.Column(db.Date, nullable=True)
 
     def __repr__(self):
         return f'<Correspondence {self.corSubject}>'

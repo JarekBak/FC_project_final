@@ -2,12 +2,14 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Departament, Employee, Correspondence, Attachment
 from datetime import datetime
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///corespondetion.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+migrate = Migrate(app, db)
 
 @app.route("/")
 def index():
@@ -148,6 +150,30 @@ def cor_update_record(corID):
         employees=employees,
         selected_depID=selected_depID
     )
+
+@app.route('/edit_correspondence/<int:corID>', methods=['GET', 'POST'])
+def edit_correspondence(corID):
+    record = Correspondence.query.get_or_404(corID)
+
+    if request.method == 'POST':
+        # Pobierz zmienione dane z formularza
+        record.corStatus = request.form.get('corStatus')
+        record.corDeadline = request.form.get('corDeadline')
+        record.corComplited = request.form.get('corComplited')
+
+        # Walidacja dat
+        record.corDeadline = datetime.strptime(record.corDeadline, '%Y-%m-%d').date() if record.corDeadline else None
+        record.corComplited = datetime.strptime(record.corComplited, '%Y-%m-%d').date() if record.corComplited else None
+
+        # Zapis zmian
+        try:
+            db.session.commit()
+            return redirect(url_for('cor_records'))  # Przekierowanie do listy rekordów
+        except Exception as e:
+            db.session.rollback()
+            return f"Error: {str(e)}", 500
+
+    return render_template('edit_correspondence.html', record=record)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

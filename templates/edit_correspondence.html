@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <p></p>
+    <div class="columns">
+        <div class="column col-12">
+            <div class="text-center">
+                <h4><u>Obsługa korespondencji</u></h4>
+            </div>
+        </div>
+        <div class="column col-3"></div>
+        <div class="column col-6">
+            <form class="form-horizontal" method="post">
+                <div class="form-group">
+                    <div class="col-2">
+                        <label class="form-label" for="corSubject">Temat</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSubject" name="corSubject" value="{{ record.corSubject }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corContent">Opis</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corContent" name="corContent" value="{{ record.corContent }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corDate">Data rejestracji</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="date" id="corDate" name="corDate" value="{{ record.corDate }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corType">Departament</label>
+                    </div>
+                    <div class="col-10">
+                          <input class="form-input" type="text" id="corType" name="corType" value="{{ record.corType }}" readonly>
+                    </div>
+                     <div class="col-2">
+                        <label class="form-label" for="corSenderName">Nadawca</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSenderName" name="corSenderName" value="{{ record.corSenderName }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corSenderAddress">Adres nadawcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corSenderAddress" name="corSenderAddress" value="{{ record.corSenderAddress }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corRecipientName">Nazwa odbiorcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corRecipientName" name="corRecipientName" value="{{ record.corRecipientName }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corRecipientAddress">Adres odbiorcy</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corRecipientAddress" name="corRecipientAddress" value="{{ record.corRecipientAddress }}" readonly>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corStatus">Status realizacji</label>
+                    </div>
+                    <div class="col-10">
+                          <select class="form-select" id="corStatus" name="corStatus">
+                            <option value="NIEPODJĘTE" {% if record.corStatus == "NIEPODJĘTE" %}selected{% endif %}>NIEPODJĘTE</option>
+                            <option value="W TRAKCIE REALIZACJI" {% if record.corStatus == "W TRAKCIE REALIZACJI" %}selected{% endif %}>W TRAKCIE REALIZACJI</option>
+                            <option value="ZAKOŃCZONE" {% if record.corStatus == "ZAKOŃCZONE" %}selected{% endif %}>ZAKOŃCZONE</option>
+                          </select>
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corDeadline">Termin realizacji</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="date" id="corDeadline" name="corDeadline" value="{{ record.corDeadline or '' }}">
+                    </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corComplited">Data odpowiedzi</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="date" id="corComplited" name="corComplited" value="{{ record.corComplited or '' }}">
+                    </div>
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <button class="btn btn-primary" type="submit">Zapisz zmiany</button>
+                        <a href="{{ url_for('cor_records') }}" class="btn btn">Anuluj</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column col-3"></div>
+    </div>
+</div>
+{% endblock %}

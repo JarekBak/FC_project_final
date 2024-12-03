@@ -26,6 +26,9 @@
                         <th>Departament</th>
                         <th>Pracownik realizujący</th>
                         <th>Akcja</th>
+                        <th>Status realizacji</th>
+                        <th>Termin odpowiedzi</th>
+                        <th>Data wysłania</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +46,13 @@
                         <td>{{ record.departament.depName if record.departament else 'Brak' }}</td>
                         <td>{{ record.employee.empName if record.employee else 'Brak'  }}</td>
                         <td>
-                            <a href="{{ url_for('cor_update_record', corID=record.corID) }}">Przydział</a>
+                            <a href="{{ url_for('cor_update_record', corID=record.corID) }}">Przydziel</a>
+                            <p></p>
+                            <a href="{{ url_for('edit_correspondence', corID=record.corID) }}">Otwórz</a>
                         </td>
+                        <td>{{ record.corStatus }}</td>
+                        <td>{{ record.corDeadline }}</td>
+                        <td>{{ record.corComplited }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
