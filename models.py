@@ -1,5 +1,3 @@
-import pandas as pd
-from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -9,7 +7,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///correspondence.db'
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
-
 
 class Departament(db.Model):
     __tablename__ = 'departament'

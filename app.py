@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Departament, Employee, Correspondence, Attachment
 from datetime import datetime
@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///corespondetion.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'super_tajny_klucz'
 
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -16,11 +17,13 @@ def index():
     departaments = Departament.query.all()
     return render_template("index.html", departaments=departaments)
 
+# Pokazanie listy departamentów
 @app.route("/departaments")
 def departament_list():
     departaments = Departament.query.all()
     return render_template("departaments.html", departaments=departaments)
 
+# Dodawanie nowych departamentów
 @app.route("/add-departament", methods=['GET', 'POST'])
 def add_departament():
     if request.method == 'POST':
@@ -32,6 +35,7 @@ def add_departament():
             return "All fields (depName) are required.", 400
         try:
             new_departament = Departament(depName=depName)
+            # aktualizacja bazy danych o nowy departament
             db.session.add(new_departament)
             db.session.commit()
         except Exception as e:
@@ -42,9 +46,11 @@ def add_departament():
         # Dla żądania GET renderujemy formularz
         return render_template("add_departament.html")
 
+# Dodawanie nowego pracownika
 @app.route('/add_employee', methods=['GET', 'POST'])
 def add_employee():
     if request.method == 'POST':
+        # Pobieramy dane z formularza
         empName = request.form.get('empName')
         empEmail = request.form.get('empEmail')
         depID = request.form.get('depID')  # depID jako liczba
@@ -57,6 +63,7 @@ def add_employee():
             depID=depID,  # Zapisywanie depID w bazie
             empIsManager=empIsManager
         )
+        # aktualizacja bazy danych o nowego pracownika
         db.session.add(new_employee)
         db.session.commit()
         return redirect(url_for('employee_list'))  # Przekierowanie na listę pracowników
@@ -65,11 +72,13 @@ def add_employee():
     departaments = Departament.query.all()
     return render_template('add_employee.html', departaments=departaments)
 
+# Pokazanie listy pracowników
 @app.route("/employees")
 def employee_list():
     employees = Employee.query.all()
     return render_template("employees.html", employees=employees)
 
+# Dodawanie nowej korespondencji
 @app.route("/add-correspondence", methods=["GET", "POST"])
 def add_correspondence():
     departaments = Departament.query.all()
@@ -109,6 +118,7 @@ def add_correspondence():
                 corStatus=corStatus
 
             )
+            # aktualizacja bazy danych
             db.session.add(new_correspondence)
             db.session.commit()
         except Exception as e:
@@ -119,6 +129,25 @@ def add_correspondence():
 
     return render_template("add_correspondence.html", departaments=departaments)
 
+# Usuwanie korespondencji z bazy danych
+@app.route('/delete_record/<int:corID>', methods=['GET'])
+def delete_record(corID):
+    try:
+        # Znalezienie rekordu w bazie danych
+        record = Correspondence.query.get(corID)
+        if record:
+            # Usunięcie rekordu
+            db.session.delete(record)
+            db.session.commit()
+            flash('Rekord został usunięty.', 'success')
+        else:
+            flash('Nie znaleziono rekordu o podanym ID.', 'error')
+    except Exception as e:
+        db.session.rollback()  # Wycofanie zmian w razie błędu
+        flash(f'Błąd podczas usuwania rekordu: {str(e)}', 'error')
+    return redirect(url_for('cor_records'))
+
+# Wyświetlenie listy wszystkich korespondencji
 @app.route('/cor_records')
 def cor_records():
     try:
@@ -151,7 +180,7 @@ def cor_records():
     except Exception as e:
         return f"Error: {str(e)}", 500
 
-
+# Aktualizacja przypisania departamentu i/lub pracownika do obsługi korespondencji
 @app.route('/cor_update_record/<int:corID>', methods=['GET', 'POST'])
 def cor_update_record(corID):
     record = Correspondence.query.get_or_404(corID)
@@ -165,7 +194,7 @@ def cor_update_record(corID):
 
     if request.method == 'POST':
         if 'save' in request.form:
-            # Zapisywanie zmian
+            # Zapisanie zmian
             record.depID = request.form.get('depID')
             record.empID = request.form.get('empID')
             db.session.commit()
@@ -179,12 +208,13 @@ def cor_update_record(corID):
         selected_depID=selected_depID
     )
 
+# Edycja zapisanego rekordu korespondencji - tylko trzy kolumny: Status, Termin realizacji, Data zakończenia realizacji
 @app.route('/edit_correspondence/<int:corID>', methods=['GET', 'POST'])
 def edit_correspondence(corID):
     record = Correspondence.query.get_or_404(corID)
 
     if request.method == 'POST':
-        # Pobierz zmienione dane z formularza
+        # Pobranie danychz formularza
         record.corStatus = request.form.get('corStatus')
         record.corDeadline = request.form.get('corDeadline')
         record.corComplited = request.form.get('corComplited')
@@ -193,7 +223,7 @@ def edit_correspondence(corID):
         record.corDeadline = datetime.strptime(record.corDeadline, '%Y-%m-%d').date() if record.corDeadline else None
         record.corComplited = datetime.strptime(record.corComplited, '%Y-%m-%d').date() if record.corComplited else None
 
-        # Zapis zmian
+        # Zapisanie zmian
         try:
             db.session.commit()
             return redirect(url_for('cor_records'))  # Przekierowanie do listy rekordów
