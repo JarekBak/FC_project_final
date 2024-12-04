@@ -25,7 +25,7 @@
                         <input class="form-input" type="text" id="corContent" name="corContent" placeholder="Dodatkowy opis pisma">
                     </div>
                      <div class="col-2">
-                        <label class="form-label" for="corDate">Data rejestracji</label>
+                        <label class="form-label" for="corDate" >Data rejestracji</label>
                     </div>
                     <div class="col-10">
                         <input class="form-input" type="date" id="corDate" name="corDate" placeholder="Wprowadź datę">
@@ -64,7 +64,6 @@
                     <div class="col-10">
                         <input class="form-input" type="text" id="corRecipientAddress" name="corRecipientAddress" placeholder="Wpisz adres odbiorcy">
                     </div>
-
                     <div class="col-2">
                         <label class="form-label" for="depID">Departament</label>
                     </div>
@@ -76,12 +75,18 @@
                                 {% endfor %}
                           </select>
                     </div>
+                    <div class="col-2">
+                        <label class="form-label" for="corStatus">Status</label>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-input" type="text" id="corStatus" name="corStatus" value="NIEPODJĘTE" readonly>
+                    </div>
                     <p></p>
                     <div class="col-6"></div>
-                    <div class="col-2">
-                        <button class="btn btn-primary" type="submit">Zapisz</button>
+                    <div class="col-6">
+                        <button class="btn btn-primary" type="submit">Zapisz zmiany</button>
+                        <a href="{{ url_for('cor_records') }}" class="btn btn">Anuluj</a>
                     </div>
-                    <div class="col-6"></div>
                     <p></p>
                 </div>
 

@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32f2c95c-5b76-4940-94eb-4cd9bad7a29e" name="Changes" comment="wersja z dziłającym przydziałem poszczególnych korespondencji do pracowników">
-      <change afterPath="$PROJECT_DIR$/templates/edit_correspondence.html" afterDir="false" />
+    <list default="true" id="32f2c95c-5b76-4940-94eb-4cd9bad7a29e" name="Changes" comment="Działająca wersja z możliwością przydziału poszczególnych korespondencji do departamentów i pracowników, z możliwością edycji poszczególnych rekordów">
+      <change afterPath="$PROJECT_DIR$/templates/departaments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/corespondetion.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/corespondetion.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_correspondence.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_correspondence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_departament.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_departament.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/cor_records.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cor_records.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,13 +99,22 @@
       <option name="project" value="LOCAL" />
       <updated>1733249838019</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Działająca wersja z możliwością przydziału poszczególnych korespondencji do departamentów i pracowników, z możliwością edycji poszczególnych rekordów">
+      <option name="closed" value="true" />
+      <created>1733260211863</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733260211863</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="utworzenie projektu" />
     <MESSAGE value="wersja z działającym dodawaniem poszczególnych danych" />
     <MESSAGE value="wersja z dziłającym przydziałem poszczególnych korespondencji do pracowników" />
-    <option name="LAST_COMMIT_MESSAGE" value="wersja z dziłającym przydziałem poszczególnych korespondencji do pracowników" />
+    <MESSAGE value="Działająca wersja z możliwością przydziału poszczególnych korespondencji do departamentów i pracowników, z możliwością edycji poszczególnych rekordów" />
+    <option name="LAST_COMMIT_MESSAGE" value="Działająca wersja z możliwością przydziału poszczególnych korespondencji do departamentów i pracowników, z możliwością edycji poszczególnych rekordów" />
   </component>
 </project>

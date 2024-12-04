@@ -16,6 +16,11 @@ def index():
     departaments = Departament.query.all()
     return render_template("index.html", departaments=departaments)
 
+@app.route("/departaments")
+def departament_list():
+    departaments = Departament.query.all()
+    return render_template("departaments.html", departaments=departaments)
+
 @app.route("/add-departament", methods=['GET', 'POST'])
 def add_departament():
     if request.method == 'POST':
@@ -80,6 +85,7 @@ def add_correspondence():
         corRecipientName = request.form.get('corRecipientName')
         corRecipientAddress = request.form.get('corRecipientAddress')
         depID = request.form.get('depID')
+        corStatus = request.form.get('corStatus')
 
         # Konwersja corDate na datetime.date
         corDate_obj = datetime.strptime(corDate, '%Y-%m-%d').date()
@@ -89,7 +95,7 @@ def add_correspondence():
             return "All fields (Tytuł pisma, Data, Typ, Nadawca, Departament) are required.", 400
 
         try:
-            # Dodajemy nowego pracownika
+            # Dodajemy nową korespondencję
             new_correspondence = Correspondence(
                 corSubject=corSubject,
                 corContent=corContent,
@@ -100,6 +106,7 @@ def add_correspondence():
                 corRecipientName=corRecipientName,
                 corRecipientAddress=corRecipientAddress,
                 depID=depID,
+                corStatus=corStatus
 
             )
             db.session.add(new_correspondence)
@@ -115,12 +122,33 @@ def add_correspondence():
 @app.route('/cor_records')
 def cor_records():
     try:
-        # Pobranie wszystkich rekordów
-        records = Correspondence.query.all()
-        # Jeśli nie ma żadnych rekordów, można przekazać pustą listę
-        return render_template('cor_records.html', records=records)
+        # Pobranie listy departamentów
+        departaments = Departament.query.all()
+
+        # Pobranie parametrów filtrowania
+        filter_subject = request.args.get('filterSubject', '').strip()
+        filter_sender = request.args.get('filterSender', '').strip()
+        filter_status = request.args.get('filterStatus', '').strip()
+        filter_department = request.args.get('filterDepartment', '').strip()
+
+        # Tworzenie podstawowego zapytania
+        query = Correspondence.query
+
+        # Dodawanie filtrów dynamicznie
+        if filter_subject:
+            query = query.filter(Correspondence.corSubject.ilike(f"%{filter_subject}%"))
+        if filter_sender:
+            query = query.filter(Correspondence.corSenderName.ilike(f"%{filter_sender}%"))
+        if filter_status:
+            query = query.filter(Correspondence.corStatus == filter_status)
+        if filter_department:
+            query = query.filter(Correspondence.depID == int(filter_department))
+
+        # Pobranie przefiltrowanych rekordów
+        records = query.all()
+
+        return render_template('cor_records.html', records=records, departaments=departaments)
     except Exception as e:
-        # Obsługa błędów - wyświetlenie komunikatu o błędzie, jeśli coś poszło nie tak
         return f"Error: {str(e)}", 500
 
 

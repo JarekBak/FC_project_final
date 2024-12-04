@@ -17,20 +17,14 @@
                     </div>
                     <div class="col-10">
                         <input class="form-input" type="text" id="depName" name="depName" placeholder="Nazwa departamentu">
+                        <p></p>
                     </div>
-                    <div class="col-2">
-                        <label class="form-label" for="ID_manager">Menager</label>
-                    </div>
-                    <div class="col-10">
-                        <input class="form-input" type="text" id="ID_manager" placeholder="Menager">
-                    <p></p>
-                    </div>
-                    <div class="col-6"></div>
-                    <div class="col-2">
+
+                    <div class="col-5"></div>
+                    <div class="col-7">
                         <button class="btn btn-primary" type="submit">Zapisz</button>
+                        <a href="{{ url_for('departament_list') }}" class="btn btn">Anuluj</a>
                     </div>
-                    <div class="col-6"></div>
-                    <p></p>
                 </div>
             </form>
         </div>

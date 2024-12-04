@@ -18,6 +18,7 @@
             font-weight: 700;
             color: #333;
             margin: 0;
+            text-align: center;
         }
         /* Optional: General styles for toast messages */
         .toast {
@@ -29,31 +30,51 @@
         h4, th, td {
             text-align: center; /* Wyśrodkowanie tekstu */
         }
+        .center-wrapper {
+        display: flex; /* Włączenie Flexboxa */
+        justify-content: center; /* Centrowanie poziome */
+        align-items: center; /* Centrowanie pionowe */
+        height: 5vh; /* Ustawienie wysokości wrappera na 50% wysokości widoku */
+        text-align: center; /* Wyrównanie tekstu na środku */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Rozmiar czcionki nagłówka */
+            margin: 0; /* Usuń domyślne marginesy */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="navbar">
-            <section class="navbar-section">
-                <a href="{{ url_for('index') }}" class="navbar-brand mr-2"><b>Strona główna</b></a>
-                <a href="{{ url_for('add_departament') }}" class="btn btn-link">Departamenty</a>
-                <a href="{{ url_for('employee_list') }}" class="btn btn-link">Pracownicy</a>
-                <a href="{{ url_for('cor_records') }}" class="btn btn-link">Korespondencja</a>
-                <a href="" class="btn btn-link">Administracja</a>
-            </section>
-                    <div>
-                        <section class="navbar-center">
-                            <h1>Baza Korespondecji</h1>
-                        </section>
-                    </div>
+        <div class="columns">
+            <div class="column col-12">
+                <header class="navbar">
+                    <section class="navbar-section">
+                        <a href="{{ url_for('index') }}" class="navbar-brand mr-2"><b>Strona główna</b></a>
+                        <a href="{{ url_for('cor_records') }}" class="btn btn-link">Korespondencja</a>
+                        <div class="dropdown">
+                            <a class="btn btn-link dropdown-toggle" tabindex="0">Administracja
+                                <i class="icon icon-caret"></i></a>
+                            <ul class="menu">
+                                <li class="menu-item"><a href="{{ url_for('departament_list') }}">Departament</a></li>
+                                <li class="menu-item"><a href="{{ url_for('employee_list') }}">Pracownicy</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </header>
+            </div>
+        </div>
 
-          <section class="navbar-section">
-              <a href="" class="btn btn-link">Historia operacji</a>
-          </section>
-        </header>
+        <!-- Dodanie wrappera dla środkowej sekcji -->
+        <div class="center-wrapper">
+            <h1>Baza Korespondencji</h1>
+        </div>
+
         <main class="content">
             {% block content %}{% endblock %}
         </main>
+        <br>
+        <br>
         <footer class="text-center">
             <p>&copy; 2024 Korespondencja</p>
         </footer>
